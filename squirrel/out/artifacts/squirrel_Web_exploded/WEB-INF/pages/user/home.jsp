@@ -30,6 +30,7 @@
 			dataType:'json',
 			success:function(json){
 				if(json){
+                    $('#myviewform').find("input[name='id']").val(json.id);
 					$('#myviewform').find("input[name='phone']").val(json.phone);
 					$('#myviewform').find("input[name='username']").val(json.username);
 					$('#myviewform').find("input[name='qq']").val(json.qq);
@@ -39,8 +40,8 @@
 				}
 			},
 			error:function(){
-				alert('请求超时或系统出错!');
-				$('#viewModal').modal('hide');
+                alert('请求超时或系统出错!!!!');
+				$('#viewModal').modal('toggle');
 			}
    });
   }

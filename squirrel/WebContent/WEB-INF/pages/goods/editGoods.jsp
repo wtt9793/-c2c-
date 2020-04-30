@@ -111,17 +111,17 @@
                     <div class="changeinfo">
                         <span>物品名：</span>
                         <input class="in_info" type="text" name="name" placeholder="请输入物品名" value="${goodsExtend.goods.name}"/>
-                        <span>(*必填)</span>
+                        <span style="margin-left: 120px">(*必填)</span>
                     </div>
                     <div class="changeinfo">
                         <span>出售价格：</span>
                         <input class="in_info" type="text" name="price" placeholder="请输入出售价格" value="${goodsExtend.goods.price}"/>
-                       <span>(*必填)</span>
+                       <span style="margin-left: 135px">(*必填)</span>
                    </div>
                    <div class="changeinfo">
                         <span>原价：</span>
                         <input class="in_info" type="text" name="realPrice" placeholder="请输入商品原价" value="${goodsExtend.goods.realPrice}"/>
-                        <span id="checkphone">(*选填,请如实填写)</span>
+                        <span id="checkphone" style="margin-left: 120px">(*选填,请如实填写)</span>
                      </div>
                      <div class="changeinfo">
                         <span>物品类别：</span>

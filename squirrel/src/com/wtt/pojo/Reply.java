@@ -1,7 +1,7 @@
 package com.wtt.pojo;
 /**
  * 回复
- * @author lyq
+ * @author wtt
  *
  */
 public class Reply {

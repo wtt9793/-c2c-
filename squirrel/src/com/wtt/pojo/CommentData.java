@@ -1,7 +1,7 @@
 package com.wtt.pojo;
 /**
  * 商品拓展 联合查询
- * @author lyq
+ * @author wtt
  *
  */
 import java.util.List;

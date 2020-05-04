@@ -5,7 +5,7 @@ import java.util.List;
 import com.wtt.pojo.Image;
 
 /**
- * Created by lenovo on 2017/5/12.
+ * Created by wtt on 2020/2/9.
  */
 public interface ImageService {
     int insert(Image record);

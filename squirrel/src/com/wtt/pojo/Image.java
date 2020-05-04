@@ -1,7 +1,7 @@
 package com.wtt.pojo;
 /**
  * 图片
- * @author lyq
+ * @author wtt
  *
  */
 public class Image {

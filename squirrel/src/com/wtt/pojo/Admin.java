@@ -1,7 +1,7 @@
 package com.wtt.pojo;
 /**
  * 管理员
- * @author lyq
+ * @author wtt
  *
  */
 public class Admin {

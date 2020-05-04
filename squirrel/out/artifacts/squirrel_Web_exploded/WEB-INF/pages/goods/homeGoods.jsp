@@ -71,7 +71,7 @@
                
             });
             
-         <%--    $("#login_password").blur(function(){
+             $("#login_password").blur(function(){
             	var phone=$("#login_phone").val();
                 var password=$(this).val();
                 $.ajax({
@@ -81,29 +81,31 @@
       				dataType:'json',
       				success:function(json){
       				if(json){
-      					if(json.flag){
-      						 $("#errorPassword").html("请核对账号密码，再重新输入!");
-      						 $("#loginIn").attr("disabled",true);
-      					}else{
-      						 $("#errorPassword").empty();
-      						 $("#loginIn").attr("disabled",false);
-      					}
+
+                        if(json.flag){
+                            $("#errorPassword").html("请输入的密码有误!");
+                            $("#loginIn").attr("disabled",false);
+                        }if(json.flag==false){
+                            $("#login_errorPhone").html("您输入的在账号有误!");
+                            $("#loginIn").attr("disabled",false);
+                        }
+
       				}else{
-      					if(json.flag){
-    						 $("#errorPassword").html("请输入的密码有误!");
-    						 $("#loginIn").attr("disabled",true);
-    					}if(json.flag==false){
-    						 $("#login_errorPhone").html("您输入的在账号有误!");
-    						 $("#loginIn").attr("disabled",true);
-    					}
+                        if(json.flag){
+                        	 $("#errorPassword").html("请核对账号密码，再重新输入!");
+                        	 $("#loginIn").attr("disabled",true);
+                        }else{
+                        	 $("#errorPassword").empty();
+                        	 $("#loginIn").attr("disabled",false);
+                        }
       				}
       				},
       				error:function(json){
-     					alert("系统出错啦")
+     					 // alert("登录成功")
       				}
       			});
-                 
-              }); --%>
+
+              });
             
         });
         

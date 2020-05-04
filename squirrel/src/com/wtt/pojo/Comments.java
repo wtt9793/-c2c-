@@ -1,7 +1,7 @@
 package com.wtt.pojo;
 /**
  * 评论
- * @author lyq
+ * @author wtt
  *
  */
 public class Comments {

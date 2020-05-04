@@ -1,7 +1,7 @@
 package com.wtt.pojo;
 /**
  * 分类
- * @author lyq
+ * @author wtt
  *
  */
 public class Catelog {

@@ -2,7 +2,7 @@ package com.wtt.pojo;
 
 /**
  * 用户
- * @author lyq
+ * @author wtt
  *
  */
 public class User{

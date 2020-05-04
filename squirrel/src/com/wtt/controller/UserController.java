@@ -100,7 +100,7 @@ public class UserController {
 	 * @param request
 	 * @return
 	 */
-	/*@RequestMapping(value = "/password",method = RequestMethod.POST)
+	@RequestMapping(value = "/password",method = RequestMethod.POST)
 	@ResponseBody
 	public String password(HttpServletRequest request){
 		String phone=request.getParameter("phone");
@@ -110,17 +110,19 @@ public class UserController {
 		}else {
 			User user = userService.getUserByPhone(phone);
 			if(user==null) {
-				return "{\"success\":false,\"flag\":false}";//账号错误
+//				return "{\"success\":false,\"flag\":false}";//账号错误
+				return "{\"success\":true,\"flag\":false}";//账号错误（）
 			}
 			String pwd = MD5.md5(password);
 			if (pwd.equals(user.getPassword())) {
-				return "{\"success\":true,\"flag\":false}";//密码正确
+//				return "{\"success\":true,\"flag\":false}";//密码正确
+				return " ";
 			}else {
 				return "{\"success\":true,\"flag\":true}";//密码错误
 			}
 		}
 		
-	}*/
+	}
 	
 
 	/**

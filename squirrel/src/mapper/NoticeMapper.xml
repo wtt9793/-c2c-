@@ -21,7 +21,9 @@
 	   <result column="status" property="status" jdbcType="TINYINT" />
 	</resultMap>
   <select id="getNoticeList" resultMap="BaseResultMap">
-     select * from notice n,user u where n.user_id=u.id order by n.create_at desc
+--      select * from user u,notice n where n.user_id=u.id order by n.create_at desc
+-- 		select * from user u,notice n where n.user_id=u.id
+		select * from notice n,user u where n.user_id=u.id order by n.create_at desc
   </select>
    <insert id="insertSelective" parameterType="com.wtt.pojo.Notice" >
 	 insert into notice(id,user_id,create_at,context,status) values(#{id},#{user.id},#{createAt},#{context},#{status})

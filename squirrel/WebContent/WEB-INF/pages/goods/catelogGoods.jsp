@@ -44,11 +44,74 @@
                 $("#changeName").css("display","none");
             }
         }
+        <%--$(document).ready(function(){--%>
+            <%--//异步验证--%>
+            <%--$("#phone").blur(function(){--%>
+                <%--var phone=$(this).val();--%>
+                <%--$.ajax({--%>
+                    <%--url:'<%=basePath%>user/register',--%>
+                    <%--type:'POST',--%>
+                    <%--data:{phone:phone},--%>
+                    <%--dataType:'json',--%>
+                    <%--success:function(json){--%>
+                        <%--if(json.flag){--%>
+                            <%--$("#errorPhone").html("账号已被注册，请重新输入!");--%>
+                            <%--$("#register").attr("disabled",true);--%>
+                        <%--}else{--%>
+                            <%--$("#errorPhone").empty();--%>
+                            <%--$("#register").attr("disabled",false);--%>
+                        <%--}--%>
+                    <%--},--%>
+                    <%--error:function(){--%>
+                        <%--alert('请求超时或系统出错!');--%>
+                    <%--}--%>
+                <%--});--%>
+
+            <%--});--%>
+
+            <%--$("#login_password").blur(function(){--%>
+                <%--var phone=$("#login_phone").val();--%>
+                <%--var password=$(this).val();--%>
+                <%--$.ajax({--%>
+                    <%--url:'<%=basePath%>user/password',--%>
+                    <%--type:'POST',--%>
+                    <%--data:{phone:phone,password:password},--%>
+                    <%--dataType:'json',--%>
+                    <%--success:function(json){--%>
+                        <%--if(json){--%>
+
+                            <%--if(json.flag){--%>
+                                <%--$("#errorPassword").html("请输入的密码有误!");--%>
+                                <%--$("#loginIn").attr("disabled",false);--%>
+                            <%--}if(json.flag==false){--%>
+                                <%--$("#login_errorPhone").html("您输入的在账号有误!");--%>
+                                <%--$("#loginIn").attr("disabled",false);--%>
+                            <%--}--%>
+
+                        <%--}else{--%>
+                            <%--if(json.flag){--%>
+                                <%--$("#errorPassword").html("请核对账号密码，再重新输入!");--%>
+                                <%--$("#loginIn").attr("disabled",true);--%>
+                            <%--}else{--%>
+                                <%--$("#errorPassword").empty();--%>
+                                <%--$("#loginIn").attr("disabled",false);--%>
+                            <%--}--%>
+                        <%--}--%>
+                    <%--},--%>
+                    <%--error:function(json){--%>
+                        <%--// alert("登录成功")--%>
+                    <%--}--%>
+                <%--});--%>
+
+            <%--});--%>
+
+        <%--});--%>
+
     </script>
 <body ng-view="ng-view">
 <!--
 
-    时间：2010-2-24 13:28:16
+
     描述：顶部
 -->
 <div ng-controller="headerController" class="header stark-components navbar-fixed ng-scope">
@@ -311,6 +374,7 @@
                     </a>
                 </div>
             </c:forEach>
+
         </div>
     </div>
 </div>

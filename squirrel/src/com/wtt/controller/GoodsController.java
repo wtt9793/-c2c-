@@ -67,7 +67,7 @@ public class GoodsController {
 		// 商品种类数量
 		int catelogSize = 7;
 		// 每个种类显示商品数量
-		int goodsSize = 6;
+		int goodsSize = 8;
 
 		List<Goods> goodsList = null;
 		List<GoodsExtend> goodsAndImage = null;
@@ -146,7 +146,7 @@ public class GoodsController {
 			throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		// 每个种类显示商品数量
-		int goodsSize = 12;
+		int goodsSize = 20;
 		List<Goods> goodsList = null;
 		List<GoodsExtend> goodsAndImage = null;
 		/* 获取最新发布列表 */

@@ -1,7 +1,7 @@
 package com.wtt.pojo;
 /**
  * 商品
- * @author lyq
+ * @author wtt
  *
  */
 public class Goods {

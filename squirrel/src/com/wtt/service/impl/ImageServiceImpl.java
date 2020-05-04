@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created by W
+ * Created by wtt
  */
 @Service("imageService")
 public class ImageServiceImpl implements ImageService {

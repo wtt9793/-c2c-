@@ -151,6 +151,7 @@ public class GoodsController {
 		List<GoodsExtend> goodsAndImage = null;
 		/* 获取最新发布列表 */
 		goodsList = goodsService.getGoodsByStr(goodsSize, str, str);
+
 		goodsAndImage = new ArrayList<GoodsExtend>();
 		for (int j = 0; j < goodsList.size(); j++) {
 			// 将用户信息和image信息封装到GoodsExtend类中，传给前台

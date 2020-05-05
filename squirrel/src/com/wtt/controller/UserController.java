@@ -1,5 +1,6 @@
 package com.wtt.controller;
 
+import com.sun.deploy.association.Action;
 import com.wtt.pojo.Focus;
 import com.wtt.pojo.Goods;
 import com.wtt.pojo.GoodsExtend;
@@ -289,6 +290,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("goodsAndImage", goodsAndImage);
 		mv.addObject("myPurse", myPurse);
+		mv.addObject("focusList",focusList);
 		mv.setViewName("/user/focus");
 		return mv;
 	}
@@ -329,6 +331,8 @@ public class UserController {
 			//若该商品已经被关注，则直接返回
 			if(goodsId == goods_id.intValue()) {
 				return "redirect:/user/allFocus";
+//			    return "forward:/goods/goodsId/{id}";
+//				return "redirect:/";
 			}
 		}
 		focusService.addFocusByUserIdAndId(goods_id, user_id);

@@ -45,75 +45,76 @@
                 $("#changeName").css("display","none");
             }
         }
-       <%--$(document).ready(function(){--%>
-           <%--//异步验证--%>
-           <%--$("#phone").blur(function(){--%>
-               <%--var phone=$(this).val();--%>
-               <%--$.ajax({--%>
-                   <%--url:'<%=basePath%>user/register',--%>
-                   <%--type:'POST',--%>
-                   <%--data:{phone:phone},--%>
-                   <%--dataType:'json',--%>
-                   <%--success:function(json){--%>
-                       <%--if(json.flag){--%>
-                           <%--$("#errorPhone").html("账号已被注册，请重新输入!");--%>
-                           <%--$("#register").attr("disabled",true);--%>
-                       <%--}else{--%>
-                           <%--$("#errorPhone").empty();--%>
-                           <%--$("#register").attr("disabled",false);--%>
-                       <%--}--%>
-                   <%--},--%>
-                   <%--error:function(){--%>
-                       <%--alert('请求超时或系统出错!');--%>
-                   <%--}--%>
-               <%--});--%>
+       $(document).ready(function(){
+           //异步验证
+           $("#phone").blur(function(){
+               var phone=$(this).val();
+               $.ajax({
+                   url:'<%=basePath%>user/register',
+                   type:'POST',
+                   data:{phone:phone},
+                   dataType:'json',
+                   success:function(json){
+                       if(json.flag){
+                           $("#errorPhone").html("账号已被注册，请重新输入!");
+                           $("#register").attr("disabled",true);
+                       }else{
+                           $("#errorPhone").empty();
+                           $("#register").attr("disabled",false);
+                       }
+                   },
+                   error:function(){
+                       alert('请求超时或系统出错!');
+                   }
+               });
 
-           <%--});--%>
+           });
 
-           <%--$("#login_password").blur(function(){--%>
-               <%--var phone=$("#login_phone").val();--%>
-               <%--var password=$(this).val();--%>
-               <%--$.ajax({--%>
-                   <%--url:'<%=basePath%>user/password',--%>
-                   <%--type:'POST',--%>
-                   <%--data:{phone:phone,password:password},--%>
-                   <%--dataType:'json',--%>
-                   <%--success:function(json){--%>
-                       <%--if(json){--%>
+           $("#login_password").blur(function(){
+               var phone=$("#login_phone").val();
+               var password=$(this).val();
+               $.ajax({
+                   url:'<%=basePath%>user/password',
+                   type:'POST',
+                   data:{phone:phone,password:password},
+                   dataType:'json',
+                   success:function(json){
+                       if(json){
 
-                           <%--if(json.flag){--%>
-                               <%--$("#errorPassword").html("请输入的密码有误!");--%>
-                               <%--$("#loginIn").attr("disabled",false);--%>
-                           <%--}if(json.flag==false){--%>
-                               <%--$("#login_errorPhone").html("您输入的在账号有误!");--%>
-                               <%--$("#loginIn").attr("disabled",false);--%>
-                           <%--}--%>
+                           if(json.flag){
+                               $("#errorPassword").html("请输入的密码有误!");
+                               $("#loginIn").attr("disabled",false);
+                           }if(json.flag==false){
+                               $("#login_errorPhone").html("您输入的在账号有误!");
+                               $("#loginIn").attr("disabled",false);
+                           }
 
-                       <%--}else{--%>
-                           <%--if(json.flag){--%>
-                               <%--$("#errorPassword").html("请核对账号密码，再重新输入!");--%>
-                               <%--$("#loginIn").attr("disabled",true);--%>
-                           <%--}else{--%>
-                               <%--$("#errorPassword").empty();--%>
-                               <%--$("#loginIn").attr("disabled",false);--%>
-                           <%--}--%>
-                       <%--}--%>
-                   <%--},--%>
-                   <%--error:function(json){--%>
-                       <%--// alert("登录成功")--%>
-                   <%--}--%>
-               <%--});--%>
+                       }else{
+                           if(json.flag){
+                               $("#errorPassword").html("请核对账号密码，再重新输入!");
+                               $("#loginIn").attr("disabled",true);
+                           }else{
+                               $("#errorPassword").empty();
+                               $("#loginIn").attr("disabled",false);
+                           }
+                       }
+                   },
+                   error:function(json){
+                       // alert("登录成功")
+                   }
+               });
 
-           <%--});--%>
+           });
 
-       <%--});--%>
+       });
+
     </script>
     
     <script type="text/javascript">
     
     function  addFocus(id) {
     	location.href = '<%=basePath%>user/addFocus/'+id
-    	alert("已关注成功，查看关注列表~")
+        alert("已关注成功，查看关注列表~")
     	
     }
     
@@ -208,6 +209,38 @@
 
     描述：登录
 -->
+<%--<div ng-controller="loginController" class="ng-scope">--%>
+    <%--<div id="login-show" class="login stark-components">--%>
+        <%--<div class="publish-box z-depth-4">--%>
+            <%--<div class="row">--%>
+                <%--<a onclick="showLogin()">--%>
+                    <%--<div class="col s12 title"></div>--%>
+                <%--</a>--%>
+                <%--<form action="<%=basePath%>user/login" method="post" commandName="user" role="form">--%>
+                    <%--<div class="input-field col s12">--%>
+                        <%--<input type="text" name="phone" required="required" pattern="^1[0-9]{10}$" class="validate ng-pristine ng-empty ng-invalid ng-invalid-required ng-valid-pattern ng-touched" />--%>
+                        <%--<label>手机</label>--%>
+                    <%--</div>--%>
+                    <%--<div class="input-field col s12">--%>
+                        <%--<input type="password" name="password" required="required" class="validate ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" />--%>
+                        <%--<label>密码</label>--%>
+                        <%--<!-- <a ng-click="showForget()" class="forget-btn">忘记密码？</a> -->--%>
+                    <%--</div>--%>
+                    <%--<button type="submit" class="waves-effect waves-light btn login-btn red lighten-1">--%>
+                        <%--<i class="iconfont left"></i>--%>
+                        <%--<em>登录</em>--%>
+                    <%--</button>--%>
+                    <%--<div class="col s12 signup-area">--%>
+                        <%--<em>没有账号？赶快</em>--%>
+                        <%--<a onclick="showSignup()" class="signup-btn">注册</a>--%>
+                        <%--<em>吧！</em>--%>
+                    <%--</div>--%>
+                <%--</form>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
+
 <div ng-controller="loginController" class="ng-scope">
     <div id="login-show" class="login stark-components">
         <div class="publish-box z-depth-4">
@@ -215,17 +248,17 @@
                 <a onclick="showLogin()">
                     <div class="col s12 title"></div>
                 </a>
-                <form action="<%=basePath%>user/login" method="post" commandName="user" role="form">
+                <form action="<%=basePath%>user/login" method="post" role="form">
                     <div class="input-field col s12">
-                        <input type="text" name="phone" required="required" pattern="^1[0-9]{10}$" class="validate ng-pristine ng-empty ng-invalid ng-invalid-required ng-valid-pattern ng-touched" />
-                        <label>手机</label>
+                        <input type="text" name="phone" id="login_phone" required="required" pattern="^1[0-9]{10}$" class="validate ng-pristine ng-empty ng-invalid ng-invalid-required ng-valid-pattern ng-touched" />
+                        <label>手机&nbsp;&nbsp;<div id="login_errorPhone" style="color:red;display:inline;"></div></label>
                     </div>
                     <div class="input-field col s12">
-                        <input type="password" name="password" required="required" class="validate ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" />
-                        <label>密码</label>
-                        <!-- <a ng-click="showForget()" class="forget-btn">忘记密码？</a> -->
+                        <input type="password" id="login_password"  name="password" required="required" class="validate ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" />
+                        <label>密码&nbsp;&nbsp;<div id="errorPassword" style="color:red;display:inline;"></div></label>
+                        <!--   <a ng-click="showForget()" class="forget-btn">忘记密码？</a> -->
                     </div>
-                    <button type="submit" class="waves-effect waves-light btn login-btn red lighten-1">
+                    <button type="submit" id="loginIn" class="waves-effect waves-light btn login-btn red lighten-1">
                         <i class="iconfont left"></i>
                         <em>登录</em>
                     </button>
@@ -239,6 +272,8 @@
         </div>
     </div>
 </div>
+
+
 <!--
 
     描述：注册
@@ -373,8 +408,12 @@
                     
                 </div>
                 <div>
-              
-               <input type="button" value="加入关注" class="blue lighten-1 waves-effect waves-light btn" id="btn_cart" onclick="addFocus(${goodsExtend.goods.id}),disabled=true"></input>
+               <%--<c:if test="${items.goods.id==goodsExtend.goods.id}">--%>
+                   <%--<input type="button" value="已经关注了" data-toggle="tooltip"  title="已经关注啦~" disabled="disabled" class="blue lighten-1 waves-effect waves-light btn" id="btn_buy"></input>--%>
+               <%--</c:if>--%>
+               <%--<c:if test="${items.goods.id!=goodsExtend.goods.id}">--%>
+               <input type="button" value="加入关注" class="blue lighten-1 waves-effect waves-light btn" id="btn_cart" onclick="addFocus(${goodsExtend.goods.id}),value='已关注',disabled='disabled'"></input>
+               <%--</c:if>--%>
                <c:if test="${cur_user.id==goodsExtend.goods.userId}">
                <input type="button" value="在线支付" data-toggle="tooltip"  title="不可以购买自己的东西哦~" disabled="disabled" class="blue lighten-1 waves-effect waves-light btn" id="btn_buy"></input>
                 </c:if>

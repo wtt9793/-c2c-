@@ -116,7 +116,7 @@
                     <img src="">
                 </div>
                 <span class="name">${cur_user.username}</span><hr>
-                <a class="btn" style="width: 98%;background-color: rgb(79, 190, 246);color:rgba(255, 255, 255, 1);" href="<%=basePath%>user/myPurse">我的钱包：￥${myPurse.balance}</a>
+                <a class="btn" style="width: 98%;background-color:#99cc99;color:rgba(255, 255, 255, 1);" href="<%=basePath%>user/myPurse">我的钱包：￥${myPurse.balance}</a>
                 <input type="hidden" value="${myPurse.recharge}" id="recharge"/>
                 <input type="hidden" value="${myPurse.withdrawals}" id="withdrawals"/>
                 <span class="btn" data-toggle="modal" data-target="#myModal" style="width: 98%;background-color: rgb(79, 190, 246); color:rgba(255, 255, 255, 1);margin-top:0.5cm;">

@@ -341,6 +341,8 @@
     <div class="info">
         <a href="https://wtt9793.github.io">关于我们</a><em>-</em>
         <a href="https://wtt9793.github.io">联系我们</a>
+        <br>
+        <a href="<%=basePath%>admin" target="_blank">登录后台</a>
         <p>©2020 上应大校园二手市场</p>
     </div>
 </div>

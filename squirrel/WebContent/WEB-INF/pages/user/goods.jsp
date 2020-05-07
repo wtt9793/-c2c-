@@ -135,8 +135,9 @@
                                     </div>
                                     <div class="interact">
                                         <span class="fa fa-edit fa-lg"><a href="<%=basePath%>goods/editGoods/${items.goods.id}">编辑</a></span>
-                                        <!-- <span class="fa fa-share fa-lg"><a href="">擦亮</a></span> -->
-                                     <%--  <span class="fa fa-commenting"><a>${items.comments.commetNum}</a></span> --%>
+                                       <%--擦亮--%>
+                                        <%--<span class="fa fa-share fa-lg"><a href="">擦亮</a></span>--%>
+                                        <%--<span class="fa fa-commenting"><a>${items.comments.commetNum}</a></span>--%>
                                         <span class="time">${items.goods.startTime}</span>
                                         <span class="fa fa-trash fa-lg"><a href="<%=basePath%>goods/deleteGoods/${items.goods.id}">删除</a></span>
                                     </div><br>

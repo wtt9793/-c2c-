@@ -10604,7 +10604,7 @@ div.login.stark-components .publish-box>.row {
 
 div.login.stark-components .publish-box .title {
 	background: url(../img/title.png);
-	background-size: contain;
+	background-size: cover;
 	height: 100px
 }
 
@@ -10668,7 +10668,7 @@ div.signup.stark-components .publish-box>.row {
 
 div.signup.stark-components .publish-box .title {
 	background: url(../img/title.png);
-	background-size: contain;
+	background-size: cover;
 	height: 100px
 }
 

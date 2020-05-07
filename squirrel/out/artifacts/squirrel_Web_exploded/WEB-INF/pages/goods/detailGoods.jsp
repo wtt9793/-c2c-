@@ -111,9 +111,16 @@
     </script>
     
     <script type="text/javascript">
-    
+    // function  addFocus(id){
     function  addFocus(id) {
+
+            // var $btn = $('#btn_cart');
+            // $btn.button('loading');
+            // setTimeout(function () { $btn.button('reset'); },2000);
+
     	location.href = '<%=basePath%>user/addFocus/'+id
+        <%--location.href = '<%=basePath%>user/addFocus/'+id--%>
+
         alert("已关注成功，查看关注列表~")
     	
     }
@@ -412,7 +419,8 @@
                    <%--<input type="button" value="已经关注了" data-toggle="tooltip"  title="已经关注啦~" disabled="disabled" class="blue lighten-1 waves-effect waves-light btn" id="btn_buy"></input>--%>
                <%--</c:if>--%>
                <%--<c:if test="${items.goods.id!=goodsExtend.goods.id}">--%>
-               <input type="button" value="加入关注" class="blue lighten-1 waves-effect waves-light btn" id="btn_cart" onclick="addFocus(${goodsExtend.goods.id}),value='已关注',disabled='disabled'"></input>
+                   <%--<button type="button"  class= "blue lighten-1 waves-effect waves-light btn" id="btn_cart" data-loading-text="关注成功"  autocomplete="off" onclick="addFocus(${goodsExtend.goods.id})">加入关注</button>--%>
+               <input type="button" value="加入关注" class="blue lighten-1 waves-effect waves-light btn" id="btn_cart" data-loading-text="关注成功" onclick="addFocus(${goodsExtend.goods.id}),value='已关注',disabled='disabled'"></input>
                <%--</c:if>--%>
                <c:if test="${cur_user.id==goodsExtend.goods.userId}">
                <input type="button" value="在线支付" data-toggle="tooltip"  title="不可以购买自己的东西哦~" disabled="disabled" class="blue lighten-1 waves-effect waves-light btn" id="btn_buy"></input>

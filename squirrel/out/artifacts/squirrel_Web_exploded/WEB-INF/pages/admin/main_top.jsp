@@ -26,7 +26,7 @@
 	   	<p style="font-size:30px;text-align:center;">首页</p>
 	   	</a>
 	   	</div>
-	   	<h1 style="text-align:center;margin-top: 10px;margin-bottom: 0px;">上应大校园二手市场管理系统</h1>
+	   	<h1 style="text-align:center;margin-top: 10px;margin-bottom: 0px;">上应大校园二手平台管理系统</h1>
 	   	</div>
 	    
 	  

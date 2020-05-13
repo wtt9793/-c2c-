@@ -19,7 +19,7 @@
 </head>
 <body>
 	<div id="loginbox">
-	<h1 style="text-align:center;">上应大校园二手市场管理系统</h1>
+	<h1 style="text-align:center;">上应大校园二手平台管理系统</h1>
 		<form id="loginform" class="form-vertical" action="<%=basePath%>admin/index" method="post" role="form">
 			<div class="control-group normal_text">
 			</div>

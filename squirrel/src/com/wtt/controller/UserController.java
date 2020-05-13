@@ -210,7 +210,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		User cur_user = (User) request.getSession().getAttribute("cur_user");
 		Integer userId = cur_user.getId();
-		int size=5;
+		int size=10;
 		Purse myPurse = purseService.getPurseByUserId(userId);
 		List<User> users=userService.getUserOrderByDate(size);
 		List<Notice> notice=noticeService.getNoticeList();
@@ -230,8 +230,11 @@ public class UserController {
 	public ModelAndView basic(HttpServletRequest request) {
 		User cur_user = (User) request.getSession().getAttribute("cur_user");
 		Integer userId = cur_user.getId();
+		int size=10;
+		List<User> users=userService.getUserOrderByDate(size);
 		Purse myPurse = purseService.getPurseByUserId(userId);
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("users", users);
 		mv.addObject("myPurse", myPurse);
 		mv.setViewName("/user/basic");
 		return mv;
@@ -248,6 +251,8 @@ public class UserController {
 		Integer userId = cur_user.getId();
 		List<Goods> goodsList = goodsService.getGoodsByUserId(userId);
 		List<GoodsExtend> goodsAndImage = new ArrayList<GoodsExtend>();
+        int size=10;
+        List<User> users=userService.getUserOrderByDate(size);
 		for (int i = 0; i < goodsList.size(); i++) {
 			// 将用户信息和image信息封装到GoodsExtend类中，传给前台
 			GoodsExtend goodsExtend = new GoodsExtend();
@@ -260,6 +265,7 @@ public class UserController {
 		Purse myPurse = purseService.getPurseByUserId(userId);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("goodsAndImage", goodsAndImage);
+        mv.addObject("users", users);
 		mv.setViewName("/user/goods");
 		mv.addObject("myPurse", myPurse);
 		return mv;
@@ -286,11 +292,14 @@ public class UserController {
 			goodsExtend.setImages(images);
 			goodsAndImage.add(i, goodsExtend);
 		}
+		int size=10;
+		List<User> users=userService.getUserOrderByDate(size);
 		Purse myPurse = purseService.getPurseByUserId(userId);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("goodsAndImage", goodsAndImage);
 		mv.addObject("myPurse", myPurse);
 		mv.addObject("focusList",focusList);
+		mv.addObject("users",users);
 		mv.setViewName("/user/focus");
 		return mv;
 	}

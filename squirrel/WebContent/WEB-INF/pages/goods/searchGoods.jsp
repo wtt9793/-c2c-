@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>上应大校园二手市场</title>
+    <title>上应大校园二手平台</title>
     <link rel="icon" href="<%=basePath%>img/logo.jpg" type="image/x-icon"/>
     <link rel="stylesheet" href="<%=basePath%>css/index.css" />
     <script type="text/javascript" src="<%=basePath%>js/jquery.js" ></script>
@@ -117,7 +117,7 @@
         <div class="nav-wrapper">
             <a href="<%=basePath%>goods/homeGoods" class="logo">
                 <em class="em1">上应大</em>
-                <em class="em2">校园二手市场</em>
+                <em class="em2">校园二手平台</em>
                 <em class="em3"></em>
             </a>
             <div class="nav-wrapper search-bar">

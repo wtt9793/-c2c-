@@ -46,6 +46,7 @@
     function show(id){
         var show1 = document.getElementById('t1'); //设置一个变量用于接收e799bee5baa6e58685e5aeb931333335303532id=t1的元素
         var show2= document.getElementById('t2'); //设置一个变量用于接收id=t2的元素
+        var show3 = document.getElementById('test1').style.width='80%'
         if(show1.style.display != 'block'){ //判断如果id=t1的display不是block
             show1.style.display = 'block'; //将=t1的display样式赋值成block;其它不想显示变为none,否则相反
             show2.style.display='none';
@@ -165,99 +166,115 @@
             </div>
             <div id="t1" style="display:none" class="recommend">
                 <div class="title">
-                    <span class="text">可能认识的人</span>
+                  <span class="text">可能认识的人</span>
                     <span class ="change">
                     <input type="button" value="换一组" id="btn" class="btn btn-success btn-xs" style="width: 40px;height: 24px; padding-left: 0px;border-left-width: 1px;padding-right: 0px;" onclick="show(t2);"/>
                     </span>
                     <%--<span class="change">换一组</span>--%>
-                    <span class="underline"></span>
+                    <%--<span class="underline"></span>--%>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" id="test1" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                            <span class="sr-only">45% Complete</span>
+                        </div>
+                    </div>
                 </div>
                 <ul>
                     <li>
                         <%--<button type="button" class="head_img" onclick="viewPersonal(25)"></button>--%>
-                        <a href="#" class="head_img" role="button" onclick="viewPersonal(7)">
+                        <a href="#" class="head_img" role="button" onclick="viewPersonal(${users[5].id})">
                             <img src="<%=basePath%>img/photo1.jpg">
                         </a>
-                        <span>user4</span>
+                        <span>${users[5].username}</span>
                         <%--点赞（未实现）--%>
                         <%--<div class="glyphicon glyphicon-thumbs-up btn-lg"></div>--%>
                     </li>
                     <li>
-                        <a href="#" class="head_img" role="button" onclick="viewPersonal(8)">
+                        <a href="#" class="head_img" role="button" onclick="viewPersonal(${users[6].id})">
                             <img src="<%=basePath%>img/photo2.jpg">
                         </a>
-                        <span>user5</span>
+                        <span>${users[6].username}</span>
                         <%--<div class="fa fa-plus-square"></div>--%>
                     </li>
                     <li>
-                        <a href="#" class="head_img" role="button" onclick="viewPersonal(9)">
+                        <a href="#" class="head_img" role="button" onclick="viewPersonal(${users[7].id})">
                             <img src="<%=basePath%>img/photo3.jpg">
                         </a>
-                        <span>user6</span>
+                        <span>${users[7].username}</span>
                         <%--<div class="fa fa-plus-square"></div>--%>
                     </li>
                     <li>
-                        <a href="#" class="head_img" role="button" onclick="viewPersonal(10)">
+                        <a href="#" class="head_img" role="button" onclick="viewPersonal(${users[8].id})">
                             <img src="<%=basePath%>img/photo4.jpg">
                         </a>
-                        <span>user7</span>
+                        <span>${users[8].username}</span>
                         <%--<div class="fa fa-plus-square"></div>--%>
                     </li>
                     <li>
-                        <a href="#" class="head_img" role="button" onclick="viewPersonal(3)">
+                        <a href="#" class="head_img" role="button" onclick="viewPersonal(${users[9].id})">
                             <img src="<%=basePath%>img/photo5.jpg">
                         </a>
-                        <span>靓仔</span>
+                        <span>${users[9].username}</span>
                         <%--<div class="fa fa-plus-square"></div>--%>
                     </li>
                 </ul>
             </div>
                 <%--描述：最右侧，可能认识的人--%>
+
            <div id="t2" style="display:block" class="recommend">
+
                 <div class="title">
+
+
                     <span class="text">可能认识的人</span>
+
                     <span class ="change">
                     <input type="button" value="换一组" id="btn1" class="btn btn-success btn-xs" style="width: 40px;height: 24px; padding-left: 0px;border-left-width: 1px;padding-right: 0px;" onclick="show(t1);"/>
                     </span>
                     <%--<span class="change">换一组</span>--%>
-                    <span class="underline"></span>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" id="test" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                            <span class="sr-only">45% Complete</span>
+                        </div>
+                    </div>
                 </div>
+
                 <ul>
+
                     <li>
                         <%--<button type="button" class="head_img" onclick="viewPersonal(25)"></button>--%>
-                        <a href="#" class="head_img" role="button" onclick="viewPersonal(25)">
+                        <a href="#" class="head_img" role="button" onclick="viewPersonal(${users[0].id})">
                         <img src="<%=basePath%>img/photo1.jpg">
                         </a>
-                        <span>SC</span>
+                        <span>${users[0].username}</span>
                             <%--点赞（未实现）--%>
                         <%--<div class="glyphicon glyphicon-thumbs-up btn-lg"></div>--%>
                     </li>
                     <li>
-                        <a href="#" class="head_img" role="button" onclick="viewPersonal(26)">
+                        <a href="#" class="head_img" role="button" onclick="viewPersonal(${users[1].id})">
                             <img src="<%=basePath%>img/photo2.jpg">
                         </a>
-                        <span>SX</span>
+                        <span>${users[1].username}</span>
                         <%--<div class="fa fa-plus-square"></div>--%>
                     </li>
                     <li>
-                        <a href="#" class="head_img" role="button" onclick="viewPersonal(23)">
+                        <a href="#" class="head_img" role="button" onclick="viewPersonal(${users[2].id})">
                             <img src="<%=basePath%>img/photo3.jpg">
                         </a>
-                        <span>小丽</span>
+                        <span>${users[2].username}</span>
                         <%--<div class="fa fa-plus-square"></div>--%>
                     </li>
                     <li>
-                        <a href="#" class="head_img" role="button" onclick="viewPersonal(4)">
+                        <a href="#" class="head_img" role="button" onclick="viewPersonal(${users[3].id})">
                             <img src="<%=basePath%>img/photo4.jpg">
                         </a>
-                        <span>user1</span>
+                        <span>${users[3].username}</span>
                         <%--<div class="fa fa-plus-square"></div>--%>
                     </li>
                     <li>
-                        <a href="#" class="head_img" role="button" onclick="viewPersonal(5)">
+                        <a href="#" class="head_img" role="button" onclick="viewPersonal(${users[4].id})">
                             <img src="<%=basePath%>img/photo5.jpg">
                         </a>
-                        <span>user2</span>
+                        <span>${users[4].username}</span>
                         <%--<div class="fa fa-plus-square"></div>--%>
                     </li>
                 </ul>

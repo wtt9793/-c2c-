@@ -8,18 +8,12 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.wtt.pojo.*;
+import com.wtt.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.wtt.pojo.Goods;
-import com.wtt.pojo.Orders;
-import com.wtt.pojo.Purse;
-import com.wtt.pojo.User;
-import com.wtt.service.GoodsService;
-import com.wtt.service.OrdersService;
-import com.wtt.service.PurseService;
 
 @Controller
 @RequestMapping(value="/orders")
@@ -31,6 +25,11 @@ public class OrdersController {
 	private GoodsService goodsService;
 	@Resource
 	private PurseService  purseService;
+
+	@Resource
+    private UserService userService;
+    @Resource
+    private ImageService imageService;
 	
     
     ModelAndView mv = new ModelAndView();
@@ -42,14 +41,28 @@ public class OrdersController {
     public ModelAndView orders(HttpServletRequest request) {
         User cur_user = (User)request.getSession().getAttribute("cur_user");
         Integer user_id = cur_user.getId();
+        int size = 10;
         List<Orders> ordersList1=new ArrayList<Orders>();
         List<Orders> ordersList2=new ArrayList<Orders>();
+        List<GoodsExtend> goodsAndImage = new ArrayList<GoodsExtend>();
+        List<User> users=userService.getUserOrderByDate(size);
         ordersList1 = ordersService.getOrdersByUserId(user_id);
         ordersList2 = ordersService.getOrdersByUserAndGoods(user_id);
         Purse myPurse=purseService.getPurseByUserId(user_id);
+        for (int i = 0; i < ordersList1.size(); i++) {
+            // 将用户信息和image信息封装到GoodsExtend类中，传给前台
+            GoodsExtend goodsExtend = new GoodsExtend();
+            Orders goods = ordersList1.get(i);
+            List<Image> images = imageService.getImagesByGoodsPrimaryKey(goods.getId());
+
+            goodsExtend.setImages(images);
+            goodsAndImage.add(i, goodsExtend);
+        }
         mv.addObject("ordersOfSell",ordersList2);
         mv.addObject("orders",ordersList1);
         mv.addObject("myPurse",myPurse);
+        mv.addObject("users",users);
+        mv.addObject("goodsAndImage",goodsAndImage);
         mv.setViewName("/user/orders");
         return mv;
     }

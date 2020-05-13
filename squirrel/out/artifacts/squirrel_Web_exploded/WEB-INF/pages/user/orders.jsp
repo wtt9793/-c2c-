@@ -36,6 +36,44 @@
 			
 			alert("收货成功，感谢您的信任~")
 		}
+
+            function viewPersonal(id){
+                $.ajax({
+                    url:'<%=basePath%>admin/getUser',
+                    type:'GET',
+                    data:{id:id},
+                    dataType:'json',
+                    success:function(json){
+                        if(json){
+                            $('#myviewform').find("input[name='id']").val(json.id);
+                            $('#myviewform').find("input[name='phone']").val(json.phone);
+                            $('#myviewform').find("input[name='username']").val(json.username);
+                            $('#myviewform').find("input[name='qq']").val(json.qq);
+                            $('#myviewform').find("input[name='power']").val(json.power);
+                            $('#myviewform').find("input[name='createAt']").val(json.createAt);
+                            $('#viewModal').modal('toggle');
+                        }
+                    },
+                    error:function(){
+                        alert('请求超时或系统出错!!!!');
+                        $('#viewModal').modal('hide');
+                    }
+                });
+            }
+
+        function show(id){
+            var show1 = document.getElementById('t1'); //设置一个变量用于接收e799bee5baa6e58685e5aeb931333335303532id=t1的元素
+            var show2= document.getElementById('t2'); //设置一个变量用于接收id=t2的元素
+            var show3 = document.getElementById('test1').style.width='80%'
+            if(show1.style.display != 'block'){ //判断如果id=t1的display不是block
+                show1.style.display = 'block'; //将=t1的display样式赋值成block;其它不想显示变为none,否则相反
+                show2.style.display='none';
+            }else{
+                show1.style.display = 'none';
+                show2.style.display='block';
+            }
+        }
+
 	
 
 </script>
@@ -72,7 +110,7 @@
                 </div>
                 <span class="name">${cur_user.username}</span><hr>
               <!--   <span class="school">莆田学院</span> -->
-                  <a class="btn" style="width: 98%;background-color: rgb(79, 190, 246);color:rgba(255, 255, 255, 1);" href="<%=basePath%>user/myPurse">我的钱包：￥${myPurse.balance}</a>
+                  <a class="btn" style="width: 98%;background-color: #99cc99;color:rgba(255, 255, 255, 1);" href="<%=basePath%>user/myPurse">我的钱包：￥${myPurse.balance}</a>
                 <input type="hidden" value="${myPurse.recharge}" id="recharge"/>
                 <input type="hidden" value="${myPurse.withdrawals}" id="withdrawals"/>
                <span class="btn" data-toggle="modal" data-target="#myModal" style="width: 98%;background-color: rgb(79, 190, 246); color:rgba(255, 255, 255, 1);margin-top:0.5cm;">我的信用积分：${cur_user.power}</span>
@@ -122,7 +160,123 @@
 
             描述：右侧内容区域
         -->
+
 			<div id="user_content">
+				<%--<div id="t1" style="display:none" class="recommend">--%>
+					<%--<div class="title">--%>
+						<%--<span class="text">可能认识的人</span>--%>
+						<%--<span class ="change">--%>
+                    <%--<input type="button" value="换一组" id="btn" class="btn btn-success btn-xs" style="width: 40px;height: 24px; padding-left: 0px;border-left-width: 1px;padding-right: 0px;" onclick="show(t2);"/>--%>
+                    <%--</span>--%>
+						<%--&lt;%&ndash;<span class="change">换一组</span>&ndash;%&gt;--%>
+						<%--&lt;%&ndash;<span class="underline"></span>&ndash;%&gt;--%>
+						<%--<div class="progress">--%>
+							<%--<div class="progress-bar progress-bar-striped active" role="progressbar" id="test1" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">--%>
+								<%--<span class="sr-only">45% Complete</span>--%>
+							<%--</div>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+					<%--<ul>--%>
+						<%--<li>--%>
+							<%--&lt;%&ndash;<button type="button" class="head_img" onclick="viewPersonal(25)"></button>&ndash;%&gt;--%>
+							<%--<a href="#" class="head_img" role="button" onclick="viewPersonal(${users[5].id})">--%>
+								<%--<img src="<%=basePath%>img/photo1.jpg">--%>
+							<%--</a>--%>
+							<%--<span>${users[5].username}</span>--%>
+							<%--&lt;%&ndash;点赞（未实现）&ndash;%&gt;--%>
+							<%--&lt;%&ndash;<div class="glyphicon glyphicon-thumbs-up btn-lg"></div>&ndash;%&gt;--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" class="head_img" role="button" onclick="viewPersonal(${users[6].id})">--%>
+								<%--<img src="<%=basePath%>img/photo2.jpg">--%>
+							<%--</a>--%>
+							<%--<span>${users[6].username}</span>--%>
+							<%--&lt;%&ndash;<div class="fa fa-plus-square"></div>&ndash;%&gt;--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" class="head_img" role="button" onclick="viewPersonal(${users[7].id})">--%>
+								<%--<img src="<%=basePath%>img/photo3.jpg">--%>
+							<%--</a>--%>
+							<%--<span>${users[7].username}</span>--%>
+							<%--&lt;%&ndash;<div class="fa fa-plus-square"></div>&ndash;%&gt;--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" class="head_img" role="button" onclick="viewPersonal(${users[8].id})">--%>
+								<%--<img src="<%=basePath%>img/photo4.jpg">--%>
+							<%--</a>--%>
+							<%--<span>${users[8].username}</span>--%>
+							<%--&lt;%&ndash;<div class="fa fa-plus-square"></div>&ndash;%&gt;--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" class="head_img" role="button" onclick="viewPersonal(${users[9].id})">--%>
+								<%--<img src="<%=basePath%>img/photo5.jpg">--%>
+							<%--</a>--%>
+							<%--<span>${users[9].username}</span>--%>
+							<%--&lt;%&ndash;<div class="fa fa-plus-square"></div>&ndash;%&gt;--%>
+						<%--</li>--%>
+					<%--</ul>--%>
+				<%--</div>--%>
+				<%--&lt;%&ndash;描述：最右侧，可能认识的人&ndash;%&gt;--%>
+
+				<%--<div id="t2" style="display:block" class="recommend">--%>
+
+					<%--<div class="title">--%>
+
+
+						<%--<span class="text">可能认识的人</span>--%>
+
+						<%--<span class ="change">--%>
+                    <%--<input type="button" value="换一组" id="btn1" class="btn btn-success btn-xs" style="width: 40px;height: 24px; padding-left: 0px;border-left-width: 1px;padding-right: 0px;" onclick="show(t1);"/>--%>
+                    <%--</span>--%>
+						<%--&lt;%&ndash;<span class="change">换一组</span>&ndash;%&gt;--%>
+						<%--<div class="progress">--%>
+							<%--<div class="progress-bar progress-bar-striped active" id="test" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">--%>
+								<%--<span class="sr-only">45% Complete</span>--%>
+							<%--</div>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+
+					<%--<ul>--%>
+
+						<%--<li>--%>
+							<%--&lt;%&ndash;<button type="button" class="head_img" onclick="viewPersonal(25)"></button>&ndash;%&gt;--%>
+							<%--<a href="#" class="head_img" role="button" onclick="viewPersonal(${users[0].id})">--%>
+								<%--<img src="<%=basePath%>img/photo1.jpg">--%>
+							<%--</a>--%>
+							<%--<span>${users[0].username}</span>--%>
+							<%--&lt;%&ndash;点赞（未实现）&ndash;%&gt;--%>
+							<%--&lt;%&ndash;<div class="glyphicon glyphicon-thumbs-up btn-lg"></div>&ndash;%&gt;--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" class="head_img" role="button" onclick="viewPersonal(${users[1].id})">--%>
+								<%--<img src="<%=basePath%>img/photo2.jpg">--%>
+							<%--</a>--%>
+							<%--<span>${users[1].username}</span>--%>
+							<%--&lt;%&ndash;<div class="fa fa-plus-square"></div>&ndash;%&gt;--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" class="head_img" role="button" onclick="viewPersonal(${users[2].id})">--%>
+								<%--<img src="<%=basePath%>img/photo3.jpg">--%>
+							<%--</a>--%>
+							<%--<span>${users[2].username}</span>--%>
+							<%--&lt;%&ndash;<div class="fa fa-plus-square"></div>&ndash;%&gt;--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" class="head_img" role="button" onclick="viewPersonal(${users[3].id})">--%>
+								<%--<img src="<%=basePath%>img/photo4.jpg">--%>
+							<%--</a>--%>
+							<%--<span>${users[3].username}</span>--%>
+							<%--&lt;%&ndash;<div class="fa fa-plus-square"></div>&ndash;%&gt;--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" class="head_img" role="button" onclick="viewPersonal(${users[4].id})">--%>
+								<%--<img src="<%=basePath%>img/photo5.jpg">--%>
+							<%--</a>--%>
+							<%--<span>${users[4].username}</span>--%>
+							<%--&lt;%&ndash;<div class="fa fa-plus-square"></div>&ndash;%&gt;--%>
+						<%--</li>--%>
+					<%--</ul>--%>
+				<%--</div>--%>
 
 				<div class="share">
 
@@ -139,6 +293,7 @@
                         </div>
                     </c:if>
 					 <c:if test="${!empty orders or !empty ordersOfSell}">
+
 						<div class="story">
 
 							<div class="container">
@@ -178,7 +333,9 @@
 															<th>名称</th>
 															<th>价格</th>
 															<th>备注</th>
+															<%--<th>图片</th>--%>
 															<th>操作</th>
+
 														</tr>
 													</thead>
 													<tbody>
@@ -188,6 +345,10 @@
 															<td>${items.goods.name}</td>
 															<td>${items.goods.price}</td>
 															<td>${items.orderInformation}</td>
+													<%--<td>${goodsAndImage[0].images[0].imgUrl}</td>--%>
+															<%--<c:forEach var="items1" items="${goodsAndImage}">--%>
+													        <%--<td><img src="../upload/${items1[0].images[0].imgUrl }" style="width: 50px"></td>--%>
+															<%--</c:forEach>--%>
 															<td>
 															<c:if test="${items.orderState==1}"><input type="button" value="待发货" class="btn btn-info"/></c:if>
 															<c:if test="${items.orderState==2}"><input type="button" value="收&nbsp&nbsp&nbsp&nbsp货" onclick="ordersReceipt(${items.orderNum},${items.orderPrice},${items.goods.id})" class="btn btn-info"/></c:if>
@@ -249,6 +410,7 @@
 						</div>
 
 						     </c:if>
+
 					</div>
 				</div>
 				<!--
@@ -284,8 +446,58 @@
 					</ul>
 				</div>
 				-->
+
+
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title middle" id="myModalLabel">查看用户信息</h4>
+				</div>
+				<div class="modal-body" style="height: 220px;">
+					<form id="myviewform">
+						<div class="form-group">
+							<label for="recipient-name" class="control-label col-sm-2" >名称:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="message-text" name="username" readonly/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="control-label col-sm-2">手机号:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="message-text" name="phone" readonly/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="control-label col-sm-2">qq号:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="message-text" name="qq" readonly/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="control-label col-sm-2">信用积分:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="message-text" name="power" readonly/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="control-label col-sm-2">开户时间:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="message-text" name="createAt" readonly/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
+
 </body>
 </html>

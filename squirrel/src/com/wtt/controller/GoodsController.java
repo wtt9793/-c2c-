@@ -329,6 +329,8 @@ public class GoodsController {
 	public ModelAndView publishGoods(HttpServletRequest request) {
 		// 可以校验用户是否登录
 		User cur_user = (User) request.getSession().getAttribute("cur_user");
+		int size = 10;
+		List<User> users=userService.getUserOrderByDate(size);
 		// if (cur_user == null) {
 		// return "/goods/homeGoods";
 		// } else {
@@ -336,6 +338,7 @@ public class GoodsController {
 		Purse myPurse = purseService.getPurseByUserId(userId);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("myPurse", myPurse);
+		mv.addObject("users", users);
 		mv.setViewName("/goods/pubGoods");
 		return mv;
 	}

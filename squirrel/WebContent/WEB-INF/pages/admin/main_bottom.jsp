@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="row-fluid">
-		<div id="footer" class="span12">2020 &copy;上应大校园二手市场</div>
+		<div id="footer" class="span12">2020 &copy;上应大校园二手平台</div>
 	</div>
 </body>
 </html>

@@ -9,12 +9,14 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>【上应大】校园二手交易市场</title>
+    <title>【上应大】校园二手交易平台</title>
     <link rel="icon" href="<%=basePath%>img/logo.jpg" type="image/x-icon"/>
     <link rel="stylesheet" href="<%=basePath%>css/index.css" />
     <script type="text/javascript" src="<%=basePath%>js/jquery.js" ></script>
     <script type="text/javascript" src="<%=basePath%>js/materialize.min.js" ></script>
     <script type="text/javascript" src="<%=basePath%>js/index.bundle.js" ></script>
+    <%--<link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">--%>
+    <%--<script type="text/javascript" src="<%=basePath%>js/bootstrap.min.js"></script>--%>
     <link rel="stylesheet" href="<%=basePath%>css/materialize-icon.css" />
     <link rel="stylesheet" href="<%=basePath%>css/user.css" />
     <script>
@@ -108,6 +110,16 @@
               });
             
         });
+        function showaside(){
+            var aside = document.getElementById("test");
+            if (aside.style.transform=="translate(0px, 0px)") {
+                aside.style.transform = "translate(100%,10px)";
+            }
+            else{
+                aside.style.transform = "translate(0,0)";
+            }
+        }
+
         
         
     </script>
@@ -118,36 +130,42 @@
 <div ng-controller="headerController" class="header stark-components navbar-fixed ng-scope">
     <nav class="white nav1">
         <div class="nav-wrapper">
-            <a href="<%=basePath%>goods/homeGoods" class="logo">
+            <img src="<%=basePath%>img/xiaohui.jpg" style="height: 64px;width: 64px;">
+            <a href="<%=basePath%>goods/homeGoods" class="logo" style="position: absolute;margin-left: 0px;">
                 <em class="em1">上应大</em>
-                <em class="em2">校园二手市场</em>
+                <em class="em2">校园二手平台</em>
                 <em class="em3"></em>
             </a>
-            <div class="nav-wrapper search-bar">
+            <div style="width: 380px;position: absolute;top: 0px;right: 500px;left: 340px;">
+            <%--<div class="nav-wrapper search-bar">--%>
                 <form class="ng-pristine ng-invalid ng-invalid-required" action="<%=basePath%>goods/search">
                     <div class="input-field">
-                        <input id="search" name="str" placeholder="搜点什么吧..." style="height: 40px;"
+                        <input id="search" name="str" placeholder="点击搜索想要的东西哦" style="height: 40px;"
                                class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"/>
                       	<input type="submit" class="btn"value="搜索"></input>
                         <label for="search" class="active">
-                            <i ng-click="search()" class="iconfont"></i>
+                            <i ng-click="search()" class="iconfont" style="color:lightskyblue;"></i>
                         </label>
                     </div>
                 </form>
             </div>
+
             <ul class="right">
                 <c:if test="${empty cur_user}">
                     <li class="publish-btn">
-                       <button onclick="showLogin()" data-toggle="tooltip" 
-                                title="您需要先登录哦！" class="red lighten-1 waves-effect waves-light btn" 	>
-                            我要发布</button>
+                       <%--<button onclick="showLogin()" data-toggle="tooltip" --%>
+                                <%--title="您需要先登录哦！" class="red lighten-1 waves-effect waves-light btn" 	>--%>
+                            <%--我要发布</button>--%>
+                               <a role="button" onclick="showLogin()" data-toggle="tooltip"
+                               title="您需要先登录哦！">
+                               我要发布</a>
                     </li>
                 </c:if>
                 <c:if test="${!empty cur_user}">
                     <li class="publish-btn">
-                        <button data-position="bottom" class="red lighten-1 waves-effect waves-light btn">
+                        <%--<button data-position="bottom" class="red lighten-1 waves-effect waves-light btn">--%>
                             <a href="<%=basePath%>goods/publishGoods">我要发布</a>
-                        </button>
+                        <%--</button>--%>
                     </li>
                     <li>
                         <a href="<%=basePath%>user/allGoods">我发布的商品</a>
@@ -289,68 +307,98 @@
 <!--
     描述：左侧导航条
 -->
-<div ng-controller="sidebarController" class="sidebar stark-components ng-scope">
-    <li ng-class="{true: 'active'}[isAll]">
+<div ng-controller="sidebarController" class="sidebar stark-components ng-scope" style="top: 80px;height: 700px;">
+    <ul ng-class="{true: 'active'}[isAll]">
         <a href="<%=basePath%>goods/catelog" class="index">
-            <img src="<%=basePath%>img/index.png">
+            <img src="<%=basePath%>img/new.png">
             <em>最新发布</em>
         </a>
-    </li>
-    <li ng-class="{true: 'active'}[isDigital]">
-        <a href="<%=basePath%>goods/catelog/1" class="digital">
-            <img src="<%=basePath%>img/digital.png"  />
-            <em>闲置数码</em>
-        </a>
-    </li>
-    <li ng-class="{true: 'active'}[isRide]">
+    </ul>
+
+    <ul ng-class="{true: 'active'}[isRide]">
         <a href="<%=basePath%>goods/catelog/2" class="ride">
-            <img src="<%=basePath%>img/ride.png"/>
+            <img src="<%=basePath%>img/zihangche.png"/>
             <em>校园代步</em>
         </a>
-    </li>
-    <li ng-class="{true: 'active'}[isCommodity]">
+    </ul>
+    <ul ng-class="{true: 'active'}[isCommodity]">
         <a href="<%=basePath%>goods/catelog/3" class="commodity">
-            <img src="<%=basePath%>img/commodity.png"/>
+            <img src="<%=basePath%>img/dianqi.png"/>
             <em>电器日用</em>
         </a>
-    </li>
-    <li ng-class="{true: 'active'}[isBook]">
+    </ul>
+    <ul ng-class="{true: 'active'}[isBook]">
         <a href="<%=basePath%>goods/catelog/4" class="book">
-            <img src="<%=basePath%>img/book.png"/>
+            <img src="<%=basePath%>img/shuben.png"/>
             <em>图书教材</em>
         </a>
-    </li>
-    <li ng-class="{true: 'active'}[isMakeup]">
-        <a href="<%=basePath%>goods/catelog/5" class="makeup">
-            <img src="<%=basePath%>img/makeup.png"/>
-            <em>美妆衣物</em>
+    </ul>
+
+    <ul ng-class="{true: 'active'}[isDigital]">
+        <a href="<%=basePath%>goods/catelog/1" class="digital">
+            <img src="<%=basePath%>img/shuma.png"  />
+            <em>闲置数码</em>
         </a>
-    </li>
-    <li ng-class="{true: 'active'}[isSport]">
+    </ul>
+
+
+    <ul ng-class="{true: 'active'}[isSport]">
         <a href="<%=basePath%>goods/catelog/6" class="sport">
-            <img src="<%=basePath%>img/sport.png"/>
+            <img src="<%=basePath%>img/yundonglei.png"/>
             <em>运动棋牌</em>
         </a>
-    </li>
-    <li ng-class="{true: 'active'}[isSmallthing]">
+    </ul>
+    <ul ng-class="{true: 'active'}[isSmallthing]">
         <a href="<%=basePath%>goods/catelog/7" class="smallthing">
-            <img src="<%=basePath%>img/smallthing.png"/>
-            <em>票券小物</em>
+            <img src="<%=basePath%>img/xiangbao.png"/>
+            <em>衣物箱包</em>
         </a>
-    </li>
-    <div class="info">
-        <a href="https://wtt9793.github.io">关于我们</a><em>-</em>
-        <a href="https://wtt9793.github.io">联系我们</a>
-        <br>
-        <a href="<%=basePath%>admin" target="_blank">登录后台</a>
-        <p>©2020 上应大校园二手市场</p>
-    </div>
+    </ul>
+    <ul ng-class="{true: 'active'}[isMakeup]">
+        <a href="<%=basePath%>goods/catelog/5" class="makeup">
+            <img src="<%=basePath%>img/meizhuang.png"/>
+            <em>美妆饰品</em>
+        </a>
+    </ul>
+    <br>
+    <br>
+    <button class="btn btn-primary" onclick="showaside()">点击联系我哦~</button>
+    <br>
+
+
+
+
+
 </div>
 <!--
 
     描述：右侧显示部分
 -->
 <div class="main-content">
+    <%--<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">--%>
+        <%--Link with href--%>
+    <%--</a>--%>
+
+        <%--<div class="collapse" id="collapseExample">--%>
+
+            <aside id="test" style="width:200px;position: absolute;transform: translate(100%,10px);transition: all 2s">
+                <a href="https://wtt9793.github.io" target="_blank">关于我们</a><em>-</em>
+                <a href="https://wtt9793.github.io" target="_blank">联系我们</a>
+                <br>
+                <hr>
+                <a href="<%=basePath%>admin" target="_blank">登录后台</a>
+                <p>©2020 上应大校园二手平台</p>
+            </aside>
+        <%--</div>--%>
+            <%--<aside id="test1" style="width:200px;position: absolute;transform: translate(100%,10px);transition: all 2s">--%>
+                <%----%>
+            <%--</aside>--%>
+
+    <%--<div ng-controller="sidebarController" class="sidebar stark-components ng-scope" style="top: 80px">--%>
+    <%--<div class="info">--%>
+        <%----%>
+    <%--</div>--%>
+    <%--</div>--%>
     <!--
 
         描述：右侧banner（图片）部分
@@ -363,11 +411,11 @@
                         <div class="bannerimg">
                             <ul class="bannerul">
                                 <p class="text1">Hello：</p>
-                                <p class="text2">欢迎来到【上应大】校园二手市场。临近毕业季的</p>
+                                <p class="text2">欢迎来到【上应大】校园二手平台。临近毕业季的</p>
                                 <p class="text3">你，是否有太多的闲置与校友分享，为了追求更好的校园服</p>
-                                <p class="text4">务，我们打造了一个全新的校园平台——<span>上应大二手市场</p>
+                                <p class="text4">务，我们打造了一个全新的校园平台——<span>上应大二手平台</p>
                                 <p class="text5">这里有更多的闲置分享，更自由的校园话题讨论，你想要的，都在这里。</p>
-                                <p class="text6">加入上应大校园二手市场，你的大学，应更精彩。</p>
+                                <p class="text6">加入上应大校园二手平台，你的大学，应更精彩。</p>
                             </ul>
                           <!--   <div class="logoimg">
                                 <img src="../img/p_logo.jpg" />

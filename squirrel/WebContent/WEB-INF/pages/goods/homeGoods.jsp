@@ -12,14 +12,19 @@
     <title>【上应大】校园二手交易平台</title>
     <link rel="icon" href="<%=basePath%>img/logo.jpg" type="image/x-icon"/>
     <link rel="stylesheet" href="<%=basePath%>css/index.css" />
+    <link rel="stylesheet" href="<%=basePath%>css/test.css" />
     <script type="text/javascript" src="<%=basePath%>js/jquery.js" ></script>
     <script type="text/javascript" src="<%=basePath%>js/materialize.min.js" ></script>
     <script type="text/javascript" src="<%=basePath%>js/index.bundle.js" ></script>
     <%--<link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">--%>
-    <%--<script type="text/javascript" src="<%=basePath%>js/bootstrap.min.js"></script>--%>
+    <script type="text/javascript" src="<%=basePath%>js/test.js"></script>
     <link rel="stylesheet" href="<%=basePath%>css/materialize-icon.css" />
     <link rel="stylesheet" href="<%=basePath%>css/user.css" />
+
     <script>
+        var show_num = [];
+        // var num = show_num.join("");
+
         function showLogin() {
             if($("#signup-show").css("display")=='block'){
                 $("#signup-show").css("display","none");
@@ -48,80 +53,150 @@
             }
         }
         
-        $(document).ready(function(){
+        $(document).ready(function() {
+
             //异步验证
-            $("#phone").blur(function(){
-              var phone=$(this).val();
-              $.ajax({
-    				url:'<%=basePath%>user/register',
-    				type:'POST',
-    				data:{phone:phone},
-    				dataType:'json',
-    				success:function(json){
-    					if(json.flag){
-    						 $("#errorPhone").html("账号已被注册，请重新输入!");
-    						 $("#register").attr("disabled",true);
-    					}else{
-    						 $("#errorPhone").empty();
-    						 $("#register").attr("disabled",false);
-    					}
-    				},
-    				error:function(){
-    					alert('请求超时或系统出错!');
-    				}
-    			});
-               
-            });
-            
-             $("#login_password").blur(function(){
-            	var phone=$("#login_phone").val();
-                var password=$(this).val();
+            $("#phone").blur(function () {
+                var phone = $(this).val();
                 $.ajax({
-      				url:'<%=basePath%>user/password',
-      				type:'POST',
-      				data:{phone:phone,password:password},
-      				dataType:'json',
-      				success:function(json){
-      				if(json){
-
-                        if(json.flag){
-                            $("#errorPassword").html("请输入的密码有误!");
-                            $("#loginIn").attr("disabled",false);
-                        }if(json.flag==false){
-                            $("#login_errorPhone").html("您输入的在账号有误!");
-                            $("#loginIn").attr("disabled",false);
+                    url: '<%=basePath%>user/register',
+                    type: 'POST',
+                    data: {phone: phone},
+                    dataType: 'json',
+                    success: function (json) {
+                        if (json.flag) {
+                            $("#errorPhone").html("账号已被注册，请重新输入!");
+                            $("#register").attr("disabled", true);
+                        } else {
+                            $("#errorPhone").empty();
+                            $("#register").attr("disabled", false);
                         }
+                    },
+                    error: function () {
+                        alert('请求超时或系统出错!');
+                    }
+                });
 
-      				}else{
-                        if(json.flag){
-                        	 $("#errorPassword").html("请核对账号密码，再重新输入!");
-                        	 $("#loginIn").attr("disabled",true);
+
+            });
+            $(function () {
+
+                draw(show_num);
+                $("#canvas").on('click', function () {
+                    draw(show_num);
+                })
+            });
+
+            $("#loginIn").on('click',function () {
+                var code = $(".input-val").val().toLowerCase();
+                var num = show_num.join("");
+                var phone = $("#login_phone").val();
+                var password = $("#login_password").val();
+
+                        if(code==''){
+                            alert('请输入验证码！');
+                        }else if(code == num){
+                            $("#errorCode").empty();
+                            alert('提交成功！');
+                            // $(".input-val").val('');
+                            // draw(show_num);
                         }else{
-                        	 $("#errorPassword").empty();
-                        	 $("#loginIn").attr("disabled",false);
+                            $("#errorCode").html("您输入验证码有误!");
+                            $(".input-val").val('');
+                            // draw(show_num);
                         }
-      				}
-      				},
-      				error:function(json){
-     					 // alert("登录成功")
-      				}
-      			});
 
-              });
-            
-        });
-        function showaside(){
-            var aside = document.getElementById("test");
-            if (aside.style.transform=="translate(0px, 0px)") {
-                aside.style.transform = "translate(100%,10px)";
-            }
-            else{
-                aside.style.transform = "translate(0,0)";
-            }
-        }
 
-        
-        
+
+                $.ajax({
+                    url: '<%=basePath%>user/login',
+                    type: 'POST',
+                    data: {code: code, num: num,phone: phone, password: password},
+                    dataType: 'json',
+                    success: function (json) {
+                    },
+                })
+            })
+
+            $("#login_password").blur(function () {
+            // $(".input-val").blur(function () {
+
+                    var phone = $("#login_phone").val();
+                    var password = $("#login_password").val();
+                     // var code = $("#code").val().toLowerCase();
+                    // var code = $(".input-val").val().toLowerCase();
+                    //  var num = show_num.join("");
+                    $.ajax({
+                        url: '<%=basePath%>user/password',
+                        type: 'POST',
+                        data: {phone: phone, password: password},
+                        dataType: 'json',
+                        success: function (json) {
+                            // if (json) {
+
+                            if (json.flag) {
+                                $("#errorPassword").html("您输入的账号或密码有误!");
+                                // alert('您输入的账号或密码有误!');
+                                // $("#login_password").val('');
+                                $("#loginIn").attr("disabled", true);
+
+                            }
+                            else{
+                                $("#errorPassword").empty();
+                                $("#loginIn").attr("disabled", false);
+                            }
+
+                            // if (json.flag == false) {
+                            //
+                            //     $("#login_errorPhone").html("您输入账号有误!");
+                            //
+                            //     $("#login_phone").val('');
+                            //
+                            //
+                            // }
+                            // else{
+                            //     $("#login_errorPhone").empty();
+                            //
+                            //     $("#loginIn").attr("disabled", false);
+                            // }
+
+
+                                // } else {
+                                //     if (json.flag) {
+                                //         $("#errorPassword").html("请核对账号密码，再重新输入!");
+                                //         $("#loginIn").attr("disabled", true);
+                                //     } else {
+                                //         $("#errorPassword").empty();
+                                //         $("#loginIn").attr("disabled", false);
+                                //     }
+                                // }
+                            },
+                        // },
+                        error: function (json) {
+                            // alert("1234")
+                        }
+                    });
+
+                });
+
+            });
+
+            function showaside() {
+                var aside = document.getElementById("test");
+                if (aside.style.transform == "translate(0px, 0px)") {
+                    aside.style.transform = "translate(100%,10px)";
+                }
+                else {
+                    aside.style.transform = "translate(0,0)";
+                }
+            }
+
+
+
+
+
+
+
     </script>
 <body ng-view="ng-view">
 <!--
@@ -213,7 +288,8 @@
                 <a onclick="showLogin()">
                     <div class="col s12 title"></div>
                 </a>
-                <form action="<%=basePath%>user/login" method="post" role="form">
+                <%--<form action="<%=basePath%>user/login" method="post" role="form">--%>
+                <form method="post" role="form">
                     <div class="input-field col s12">
                         <input type="text" name="phone" id="login_phone" required="required" pattern="^1[0-9]{10}$" class="validate ng-pristine ng-empty ng-invalid ng-invalid-required ng-valid-pattern ng-touched" />
                         <label>手机&nbsp;&nbsp;<div id="login_errorPhone" style="color:red;display:inline;"></div></label>
@@ -222,6 +298,14 @@
                         <input type="password" id="login_password"  name="password" required="required" class="validate ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" />
                         <label>密码&nbsp;&nbsp;<div id="errorPassword" style="color:red;display:inline;"></div></label>
                       <!--   <a ng-click="showForget()" class="forget-btn">忘记密码？</a> -->
+                    </div>
+                    <div class="code">
+                        <input type="text" id="code" name="code" value="" placeholder="请输入验证码（不区分大小写）" required="required" class="input-val">
+                        <div id="errorCode" style="color:red;display:inline;" hidden></div>
+                        <canvas id="canvas" width="100" height="30" style="border-right-width: 0px;"></canvas>
+                        <%--<input type="text" id="num" name="canvas"/>--%>
+
+
                     </div>
                     <button type="submit" id="loginIn" class="waves-effect waves-light btn login-btn red lighten-1">
                         <i class="iconfont left"></i>
@@ -262,6 +346,7 @@
                         <input type="password" name="password" required="required" class="validate ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" />
                         <label>密码</label>
                     </div>
+
                     <div ng-show="checkTelIsShow" class="col s12">
                         <button type="submit" id="register" class="waves-effect waves-light btn verify-btn red lighten-1">
                             <i class="iconfont left"></i>
@@ -569,7 +654,7 @@
         </div>
     </div>
     <div class="index-title">
-        <a href="">美妆衣物</a>
+        <a href="">美妆饰品</a>
         <hr class="hr1">
         <hr class="hr2">
     </div>
@@ -621,7 +706,7 @@
         </div>
     </div>
     <div class="index-title">
-        <a href="">票券小物</a>
+        <a href="">衣物箱包</a>
         <hr class="hr1">
         <hr class="hr2">
     </div>

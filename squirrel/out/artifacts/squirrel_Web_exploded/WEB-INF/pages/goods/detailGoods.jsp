@@ -13,12 +13,16 @@
     <link rel="icon" href="<%=basePath%>img/logo.jpg" type="image/x-icon"/>
     <link rel="stylesheet" href="<%=basePath%>css/index.css" />
     <script type="text/javascript" src="<%=basePath%>js/jquery.js" ></script>
+    <link rel="stylesheet" href="<%=basePath%>css/test.css" />
+    <script type="text/javascript" src="<%=basePath%>js/test.js"></script>
     <script type="text/javascript" src="<%=basePath%>js/materialize.min.js" ></script>
     <script type="text/javascript" src="<%=basePath%>js/index.bundle.js" ></script>
     <link rel="stylesheet" href="<%=basePath%>css/materialize-icon.css" />
     <link rel="stylesheet" href="<%=basePath%>css/detail.css" />
     <script>
+        var show_num = [];
        function showLogin() {
+
             if($("#signup-show").css("display")=='block'){
                 $("#signup-show").css("display","none");
             }
@@ -69,6 +73,40 @@
                });
 
            });
+           $(function () {
+
+               draw(show_num);
+               $("#canvas").on('click', function () {
+                   draw(show_num);
+               })
+           });
+
+           $("#loginIn").on('click',function () {
+               var code = $(".input-val").val().toLowerCase();
+               var num = show_num.join("");
+               var phone = $("#login_phone").val();
+               var password = $("#login_password").val();
+               if(code==''){
+                   alert('请输入验证码！');
+               }else if(code == num){
+                   $("#errorCode").empty();
+                   alert('提交成功！');
+                   // $(".input-val").val('');
+                   // draw(show_num);
+               }else{
+                   $("#errorCode").html("您输入验证码有误!");
+                   $(".input-val").val('');
+                   // draw(show_num);
+               }
+               $.ajax({
+                   url: '<%=basePath%>user/login',
+                   type: 'POST',
+                   data: {code: code, num: num,phone: phone, password: password},
+                   dataType: 'json',
+                   success: function (json) {
+                   },
+               })
+           })
 
            $("#login_password").blur(function(){
                var phone=$("#login_phone").val();
@@ -79,24 +117,35 @@
                    data:{phone:phone,password:password},
                    dataType:'json',
                    success:function(json){
-                       if(json){
+                       // if(json){
+                       //
+                       //     if(json.flag){
+                       //         $("#errorPassword").html("请输入的密码有误!");
+                       //         $("#loginIn").attr("disabled",false);
+                       //     }if(json.flag==false){
+                       //         $("#login_errorPhone").html("您输入的在账号有误!");
+                       //         $("#loginIn").attr("disabled",false);
+                       //     }
+                       //
+                       // }else{
+                       //     if(json.flag){
+                       //         $("#errorPassword").html("请核对账号密码，再重新输入!");
+                       //         $("#loginIn").attr("disabled",true);
+                       //     }else{
+                       //         $("#errorPassword").empty();
+                       //         $("#loginIn").attr("disabled",false);
+                       //     }
+                       // }
+                       if (json.flag) {
+                           $("#errorPassword").html("您输入的账号或密码有误!");
+                           // alert('您输入的账号或密码有误!');
+                           // $("#login_password").val('');
+                           $("#loginIn").attr("disabled", true);
 
-                           if(json.flag){
-                               $("#errorPassword").html("请输入的密码有误!");
-                               $("#loginIn").attr("disabled",false);
-                           }if(json.flag==false){
-                               $("#login_errorPhone").html("您输入的在账号有误!");
-                               $("#loginIn").attr("disabled",false);
-                           }
-
-                       }else{
-                           if(json.flag){
-                               $("#errorPassword").html("请核对账号密码，再重新输入!");
-                               $("#loginIn").attr("disabled",true);
-                           }else{
-                               $("#errorPassword").empty();
-                               $("#loginIn").attr("disabled",false);
-                           }
+                       }
+                       else{
+                           $("#errorPassword").empty();
+                           $("#loginIn").attr("disabled", false);
                        }
                    },
                    error:function(json){
@@ -138,42 +187,119 @@
 
     描述：顶部
 -->
+<%--<div ng-controller="headerController" class="header stark-components navbar-fixed ng-scope">--%>
+    <%--<nav class="white nav1">--%>
+        <%--<div class="nav-wrapper">--%>
+            <%--<a href="<%=basePath%>goods/homeGoods" class="logo">--%>
+                <%--<em class="em1">上应大</em>--%>
+                <%--<em class="em2">校园二手平台</em>--%>
+                <%--<em class="em3"></em>--%>
+            <%--</a>--%>
+            <%--<div class="nav-wrapper search-bar">--%>
+                <%--<form ng-submit="search()" class="ng-pristine ng-invalid ng-invalid-required" action="<%=basePath%>goods/search">--%>
+                    <%--<div class="input-field">--%>
+                        <%--<input id="search" name="str" placeholder="搜点什么吧..." style="height: 40px;"--%>
+                               <%--class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"/>--%>
+                        <%--<input type="submit" class="btn"value="搜索"></input>--%>
+                        <%--<label for="search" class="active">--%>
+                            <%--<i ng-click="search()" class="iconfont"></i>--%>
+                        <%--</label>--%>
+                         <%----%>
+                    <%--</div>--%>
+                   <%----%>
+                <%--</form>--%>
+            <%--</div>--%>
+            <%--<ul class="right">--%>
+                <%--<c:if test="${empty cur_user}">--%>
+                    <%--<li class="publish-btn">--%>
+                        <%--<button onclick="showLogin()" data-toggle="tooltip" --%>
+                                <%--title="您需要先登录哦！" class="red lighten-1 waves-effect waves-light btn" 	>--%>
+                            <%--我要发布</button>--%>
+                          <%----%>
+                    <%--</li>--%>
+                <%--</c:if>--%>
+                <%--<c:if test="${!empty cur_user}">--%>
+                    <%--<li class="publish-btn">--%>
+                        <%--<button data-position="bottom" class="red lighten-1 waves-effect waves-light btn">--%>
+                            <%--<a href="<%=basePath%>goods/publishGoods">我要发布</a>--%>
+                        <%--</button>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a href="<%=basePath%>user/allGoods">我发布的商品</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a>${cur_user.username}</a>--%>
+                    <%--</li>--%>
+                   <%--<!--  <li class="notification">--%>
+                        <%--<i ng-click="showNotificationBox()" class="iconfont"></i>--%>
+                        <%--<div ng-show="notification.tagIsShow" class="notification-amount red lighten-1 ng-binding ng-hide">0 </div>--%>
+                    <%--</li> -->--%>
+                    <%--<li class="changemore">--%>
+                        <%--<a class="changeMoreVertShow()">--%>
+                            <%--<i class="iconfont"></i>--%>
+                        <%--</a>--%>
+                        <%--<div class="more-vert">--%>
+                            <%--<ul class="dropdown-content">--%>
+                                <%--<li><a href="<%=basePath%>user/home">个人中心</a></li>--%>
+                                 <%--<li><a href="<%=basePath%>user/allFocus">我的关注</a></li>--%>
+                                <%--<li><a onclick="ChangeName()">更改用户名</a></li>--%>
+                                <%--<li><a href="<%=basePath%>admin" target="_blank">登录后台</a></li>--%>
+                                <%--<li><a href="<%=basePath%>user/logout">退出登录</a></li>--%>
+                            <%--</ul>--%>
+                        <%--</div>--%>
+                    <%--</li>--%>
+                <%--</c:if>--%>
+                <%--<c:if test="${empty cur_user}">--%>
+                    <%--<li>--%>
+                        <%--<a onclick="showLogin()">登录</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a onclick="showSignup()">注册</a>--%>
+                    <%--</li>--%>
+                <%--</c:if>--%>
+            <%--</ul>--%>
+        <%--</div>--%>
+    <%--</nav>--%>
+<%--</div>--%>
 <div ng-controller="headerController" class="header stark-components navbar-fixed ng-scope">
     <nav class="white nav1">
         <div class="nav-wrapper">
-            <a href="<%=basePath%>goods/homeGoods" class="logo">
+            <img src="<%=basePath%>img/xiaohui.jpg" style="height: 64px;width: 64px;">
+            <a href="<%=basePath%>goods/homeGoods" class="logo" style="position: absolute;margin-left: 0px;">
                 <em class="em1">上应大</em>
                 <em class="em2">校园二手平台</em>
                 <em class="em3"></em>
             </a>
-            <div class="nav-wrapper search-bar">
-                <form ng-submit="search()" class="ng-pristine ng-invalid ng-invalid-required" action="<%=basePath%>goods/search">
+            <div style="width: 380px;position: absolute;top: 0px;right: 500px;left: 340px;">
+                <%--<div class="nav-wrapper search-bar">--%>
+                <form class="ng-pristine ng-invalid ng-invalid-required" action="<%=basePath%>goods/search">
                     <div class="input-field">
-                        <input id="search" name="str" placeholder="搜点什么吧..." style="height: 40px;"
+                        <input id="search" name="str" placeholder="点击搜索想要的东西哦" style="height: 40px;"
                                class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required"/>
                         <input type="submit" class="btn"value="搜索"></input>
                         <label for="search" class="active">
-                            <i ng-click="search()" class="iconfont"></i>
+                            <i ng-click="search()" class="iconfont" style="color:lightskyblue;"></i>
                         </label>
-                         
                     </div>
-                   
                 </form>
             </div>
+
             <ul class="right">
                 <c:if test="${empty cur_user}">
                     <li class="publish-btn">
-                        <button onclick="showLogin()" data-toggle="tooltip" 
-                                title="您需要先登录哦！" class="red lighten-1 waves-effect waves-light btn" 	>
-                            我要发布</button>
-                          
+                            <%--<button onclick="showLogin()" data-toggle="tooltip" --%>
+                            <%--title="您需要先登录哦！" class="red lighten-1 waves-effect waves-light btn" 	>--%>
+                            <%--我要发布</button>--%>
+                        <a role="button" onclick="showLogin()" data-toggle="tooltip"
+                           title="您需要先登录哦！">
+                            我要发布</a>
                     </li>
                 </c:if>
                 <c:if test="${!empty cur_user}">
                     <li class="publish-btn">
-                        <button data-position="bottom" class="red lighten-1 waves-effect waves-light btn">
-                            <a href="<%=basePath%>goods/publishGoods">我要发布</a>
-                        </button>
+                            <%--<button data-position="bottom" class="red lighten-1 waves-effect waves-light btn">--%>
+                        <a href="<%=basePath%>goods/publishGoods">我要发布</a>
+                            <%--</button>--%>
                     </li>
                     <li>
                         <a href="<%=basePath%>user/allGoods">我发布的商品</a>
@@ -181,9 +307,8 @@
                     <li>
                         <a>${cur_user.username}</a>
                     </li>
-                   <!--  <li class="notification">
-                        <i ng-click="showNotificationBox()" class="iconfont"></i>
-                        <div ng-show="notification.tagIsShow" class="notification-amount red lighten-1 ng-binding ng-hide">0 </div>
+                    <!-- <li class="notification">
+                    <i ng-click="showNotificationBox()" class="iconfont"></i>
                     </li> -->
                     <li class="changemore">
                         <a class="changeMoreVertShow()">
@@ -192,7 +317,7 @@
                         <div class="more-vert">
                             <ul class="dropdown-content">
                                 <li><a href="<%=basePath%>user/home">个人中心</a></li>
-                                 <li><a href="<%=basePath%>user/allFocus">我的关注</a></li>
+                                <li><a href="<%=basePath%>user/allFocus">我的关注</a></li>
                                 <li><a onclick="ChangeName()">更改用户名</a></li>
                                 <li><a href="<%=basePath%>admin" target="_blank">登录后台</a></li>
                                 <li><a href="<%=basePath%>user/logout">退出登录</a></li>
@@ -255,7 +380,7 @@
                 <a onclick="showLogin()">
                     <div class="col s12 title"></div>
                 </a>
-                <form action="<%=basePath%>user/login" method="post" role="form">
+                <form method="post" role="form">
                     <div class="input-field col s12">
                         <input type="text" name="phone" id="login_phone" required="required" pattern="^1[0-9]{10}$" class="validate ng-pristine ng-empty ng-invalid ng-invalid-required ng-valid-pattern ng-touched" />
                         <label>手机&nbsp;&nbsp;<div id="login_errorPhone" style="color:red;display:inline;"></div></label>
@@ -264,6 +389,11 @@
                         <input type="password" id="login_password"  name="password" required="required" class="validate ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" />
                         <label>密码&nbsp;&nbsp;<div id="errorPassword" style="color:red;display:inline;"></div></label>
                         <!--   <a ng-click="showForget()" class="forget-btn">忘记密码？</a> -->
+                    </div>
+                    <div class="code">
+                        <input type="text" id="code" name="code" value="" placeholder="请输入验证码（不区分大小写）" required="required" class="input-val">
+                        <div id="errorCode" style="color:red;display:inline;" hidden></div>
+                        <canvas id="canvas" width="100" height="30" style="border-right-width: 0px;"></canvas>
                     </div>
                     <button type="submit" id="loginIn" class="waves-effect waves-light btn login-btn red lighten-1">
                         <i class="iconfont left"></i>
@@ -298,7 +428,7 @@
                         <label>昵称</label>
                     </div>
                     <div class="input-field col s12">
-                        <input type="text" name="phone" required="required" pattern="^1[0-9]{10}$" class="validate ng-pristine ng-empty ng-invalid ng-invalid-required ng-valid-pattern ng-touched" />
+                        <input type="text" name="phone" id="phone" required="required" pattern="^1[0-9]{10}$" class="validate ng-pristine ng-empty ng-invalid ng-invalid-required ng-valid-pattern ng-touched" />
                         <label>手机</label>
                     </div>
                     <div class="input-field col s12">

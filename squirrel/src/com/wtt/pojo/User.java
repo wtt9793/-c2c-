@@ -2,10 +2,10 @@ package com.wtt.pojo;
 
 /**
  * 用户
- * @author wtt
  *
+ * @author wtt
  */
-public class User{
+public class User {
     private Integer id;
 
     private String phone;
@@ -25,7 +25,11 @@ public class User{
     private String lastLogin;
 
     private Byte status;
-   
+
+    private String code;
+
+    private String canvas;
+
     public Integer getId() {
         return id;
     }
@@ -106,15 +110,22 @@ public class User{
         this.status = status;
     }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", phone=" + phone + ", username=" + username + ", password=" + password + ", qq="
-				+ qq + ", createAt=" + createAt + ", goodsNum=" + goodsNum + ", power=" + power + ", lastLogin="
-				+ lastLogin + ", status=" + status + "]";
-	}
+    public String getCode(){ return code;}
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
+    public String getCanvas(){ return canvas;}
+    public void setCanvas(String canvas) {
+        this.canvas = canvas == null ? null : canvas.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", phone=" + phone + ", username=" + username + ", password=" + password + ", qq="
+                + qq + ", createAt=" + createAt + ", goodsNum=" + goodsNum + ", power=" + power + ", lastLogin="
+                + lastLogin + ", status=" + status + ",code=" + code + ", canvas=" + canvas + "]";
+    }
 
 
-
-    
-    
 }

@@ -36734,9 +36734,9 @@
 	    //校园代步 - ride
 	    //电器日用 - commodity
 	    //图书教材 - book
-	    //美妆衣物 - makeup
+	    //美妆饰品 - makeup
 	    //运动棋牌 - sport
-	    //票券小物 - smallthing
+	    //衣物箱包 - smallthing
 	    var category;
 	    var isKeyword = false;
 	    switch (window.location.pathname) {
@@ -36753,13 +36753,13 @@
 	            category = '图书教材'
 	            break;
 	        case '/category/makeup':
-	            category = '美妆衣物'
+	            category = '美妆饰品'
 	            break;
 	        case '/category/sport':
 	            category = '运动棋牌'
 	            break;
 	        case '/category/smallthing':
-	            category = '票券小物'
+	            category = '衣物箱包'
 	            break;
 	        case '/category/all':
 	            category = 'all'

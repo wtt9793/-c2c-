@@ -173,9 +173,9 @@
                             <option value="2">校园代步</option>
                             <option value="3">电器日用</option>
                             <option value="4">图书教材</option>
-                            <option value="5">美妆衣物</option>
+                            <option value="5">美妆饰品</option>
                             <option value="6">运动棋牌</option>
-                            <option value="7">票券小物</option>
+                            <option value="7">衣物箱包</option>
                         </select>
                     </div>
                     <div class="changeinfo" id="dir">

@@ -117,13 +117,13 @@ table td{
 							<span> 图书教材  </span>
 							</c:if>
 							<c:if test="${item.catelogId == 5}">  
-							<span>美妆衣物 </span>
+							<span>美妆饰品 </span>
 							</c:if>
 							<c:if test="${item.catelogId == 6}">  
 							<span> 运动棋牌</span>
 							</c:if>
 							<c:if test="${item.catelogId == 7}">  
-							<span> 票券小物</span>
+							<span> 衣物箱包</span>
 							</c:if>
 							</td>
 							<td>￥${item.realPrice}</td>
@@ -191,7 +191,7 @@ table td{
 				<div class="form-group">
 					 <label class="col-sm-4 control-label" >类别:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_catelogId" readonly name="catelogId" style="margin-top: 8px;"/>
+						<input type="text" class="form-control" id="my_catelogId"name="catelogId" style="margin-top: 8px;"/>
 					</div>
 				</div>
 				<div class="form-group">

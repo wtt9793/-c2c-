@@ -320,6 +320,7 @@
     update goods
     set catelog_id = #{catelogId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
+      catelog_id = #{catelogId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       price = #{price,jdbcType=REAL},
       real_price = #{realPrice,jdbcType=REAL},

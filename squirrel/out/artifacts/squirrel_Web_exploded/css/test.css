@@ -1,0 +1,14 @@
+
+.input-val {
+    width: 200px;
+    height: 32px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+#canvas {
+    vertical-align: middle;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
